@@ -4,7 +4,7 @@ import axios from 'axios';
 import React from 'react';
 import styled from 'styled-components';
 
-const Login = () => {
+const Login = ({onLogin}) => {
   const navigation = useNavigation();
   const [inputs, setInputs] = React.useState({
     email: '',
@@ -24,7 +24,9 @@ const Login = () => {
         console.log(res.headers['x-access-token']);
         AsyncStorage.setItem('token', res.headers['x-access-token'])
           .then(() => {
-            navigation.navigate('Home');
+            onLogin(); // Ajoutez cette ligne pour appeler la fonction onLogin
+
+            // navigation.navigate('Home');
           })
           .catch(err => {
             console.log('🚀 ~ file: login.js:6 ~ Login ~ err', err);

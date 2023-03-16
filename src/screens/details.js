@@ -5,7 +5,7 @@ import { Image } from 'react-native';
 import styled from 'styled-components';
 
 const BASE_URL = 'https://gateway.marvel.com/v1/public';
-const API_KEY = 'remplissez';
+const API_KEY = '';
 const PRIVATE_KEY = 'remplissez';
 const Details = ({route}) => {
   const {characterId} = route.params;

@@ -6,7 +6,7 @@ import { FlatList, Image, TouchableOpacity } from 'react-native';
 import styled from 'styled-components';
 
 const BASE_URL = 'https://gateway.marvel.com/v1/public';
-const API_KEY = 'remplissez';
+const API_KEY = '';
 const PRIVATE_KEY = 'remplissez';
 //  function generateHash(ts) {     const hash = md5(ts + PRIVATE_KEY + API_KEY);     return hash; }
 
@@ -46,6 +46,16 @@ const Home = props => {
     getCharacters();
   }, [page]);
 
+  const handleLogout = () => {
+    AsyncStorage.removeItem('token')
+      .then(() => {
+        props.onLogout(false);
+      })
+      .catch(err => {
+        console.log('🚀 ~ file: home.js:6 ~ Home ~ err', err);
+      });
+  };
+
   const getCharacters = id => {
     const ts = 1;
     // const hash = generateHash(ts);
@@ -77,9 +87,9 @@ const Home = props => {
   return (
     <Container>
       <StyledText>Home</StyledText>
-      <StyledButton onPress={() => handleNavigation('Login')}>
-        <StyledText>To Login</StyledText>
-      </StyledButton>
+      <TouchableOpacity onPress={handleLogout}>
+        <StyledText>Logout</StyledText>
+      </TouchableOpacity>
       <FlatList
         data={characters}
         onEndReached={() => {
