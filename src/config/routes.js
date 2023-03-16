@@ -2,6 +2,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
 import styled from 'styled-components';
+import Details from '../screens/details';
 import Home from '../screens/home';
 import Login from '../screens/login';
 
@@ -17,6 +18,14 @@ const Routes = () => {
           }}>
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen
+            options={{
+              headerShown: true,
+            }}
+            name="Details"
+            component={Details}
+          />
+          {/* Ajoutez cette ligne */}
         </Stack.Navigator>
       </NavigationContainer>
     </GlobalSafeArea>

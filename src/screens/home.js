@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect } from '@react-navigation/native';
 import axios from 'axios';
 import React, { useEffect } from 'react';
-import { FlatList, Image } from 'react-native';
+import { FlatList, Image, TouchableOpacity } from 'react-native';
 import styled from 'styled-components';
 
 const BASE_URL = 'https://gateway.marvel.com/v1/public';
@@ -10,9 +10,9 @@ const API_KEY = 'remplissez';
 const PRIVATE_KEY = 'remplissez';
 //  function generateHash(ts) {     const hash = md5(ts + PRIVATE_KEY + API_KEY);     return hash; }
 
-const CharacterRow = ({uriImage, name, description}) => {
+const CharacterRow = ({uriImage, name, description, onPress}) => {
   return (
-    <>
+    <TouchableOpacity onPress={onPress}>
       <Image
         style={{width: 100, height: 100}}
         source={{
@@ -22,7 +22,7 @@ const CharacterRow = ({uriImage, name, description}) => {
       <StyledText>
         {name} - {description}
       </StyledText>
-    </>
+    </TouchableOpacity>
   );
 };
 
@@ -93,6 +93,9 @@ const Home = props => {
             uriImage={`${item.thumbnail?.path.replace('http', 'https')}.${
               item.thumbnail?.extension
             }`}
+            onPress={() =>
+              props.navigation.navigate('Details', {characterId: item.id})
+            }
           />
         )}
         keyExtractor={item => item.id}
