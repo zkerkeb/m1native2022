@@ -32,7 +32,7 @@ const Home = props => {
   const [page, setPage] = React.useState(0);
   const [characters, setCharacters] = React.useState([]);
   const stateRedux = useSelector(state => state);
-  console.log('🚀 ~ file: home.js:16 ~ CharacterRow ~ stateRedux:', stateRedux);
+  // // console.log('🚀 ~ file: home.js:16 ~ CharacterRow ~ stateRedux:', stateRedux);
 
   useFocusEffect(() => {
     // AsyncStorage.removeItem('token');
@@ -43,7 +43,7 @@ const Home = props => {
         }
       })
       .catch(err => {
-        console.log('🚀 ~ file: home.js:6 ~ Home ~ err', err);
+        // // console.log('🚀 ~ file: home.js:6 ~ Home ~ err', err);
       });
   });
 
@@ -51,13 +51,31 @@ const Home = props => {
     getCharacters();
   }, [page]);
 
+  useEffect(() => {
+    axios
+      .get(
+        'https://api.api-ninjas.com/v1/convertcurrency?have=EUR&want=USD&amount=2000',
+        {
+          headers: {
+            'X-API-Key': 'CdAFfp5LmH3PtcYiMwI1blKcfTDYwMoP4J1XkcrH',
+            'Content-Type': 'application/json',
+          },
+        },
+      )
+      .then(response => {
+        // console.log('🚀 ~ file: home.js:6 ~ Home ~ response', response);
+      })
+      .catch(err => {
+        // console.log('🚀 ~ file: home.js:6 ~ Home ~ err', err);
+      });
+  }, []);
   const handleLogout = () => {
     AsyncStorage.removeItem('token')
       .then(() => {
         props.onLogout(false);
       })
       .catch(err => {
-        console.log('🚀 ~ file: home.js:6 ~ Home ~ err', err);
+        // console.log('🚀 ~ file: home.js:6 ~ Home ~ err', err);
       });
   };
 
@@ -78,11 +96,11 @@ const Home = props => {
         },
       })
       .then(response => {
-        console.log('🚀 ~ file: home.js:6 ~ Home ~ response', response);
+        // console.log('🚀 ~ file: home.js:6 ~ Home ~ response', response);
         setCharacters([...characters, ...response.data.data.results]);
       })
       .catch(err => {
-        console.log('🚀 ~ file: home.js:6 ~ Home ~ err', err);
+        // console.log('🚀 ~ file: home.js:6 ~ Home ~ err', err);
       });
   };
 
@@ -104,10 +122,13 @@ const Home = props => {
       <TouchableOpacity onPress={handleLogout}>
         <StyledText>Logout</StyledText>
       </TouchableOpacity>
+      <TouchableOpacity onPress={() => props.navigation.navigate('Harry')}>
+        <StyledText>Harry</StyledText>
+      </TouchableOpacity>
       <FlatList
         data={characters}
         onEndReached={() => {
-          console.log('end reached');
+          // console.log('end reached');
           setPage(page + 1);
         }}
         renderItem={({item}) => (

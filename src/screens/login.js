@@ -21,7 +21,7 @@ const Login = ({onLogin}) => {
       },
     })
       .then(res => {
-        console.log(res.headers['x-access-token']);
+        // console.log(res.headers['x-access-token']);
         AsyncStorage.setItem('token', res.headers['x-access-token'])
           .then(() => {
             onLogin(); // Ajoutez cette ligne pour appeler la fonction onLogin
@@ -29,11 +29,11 @@ const Login = ({onLogin}) => {
             // navigation.navigate('Home');
           })
           .catch(err => {
-            console.log('🚀 ~ file: login.js:6 ~ Login ~ err', err);
+            // console.log('🚀 ~ file: login.js:6 ~ Login ~ err', err);
           });
       })
       .catch(err => {
-        console.log('🚀 ~ file: login.js:6 ~ Login ~ err', err);
+        // console.log('🚀 ~ file: login.js:6 ~ Login ~ err', err);
       });
   };
 

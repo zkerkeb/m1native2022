@@ -5,6 +5,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import Chat from '../screens/chat';
 import Details from '../screens/details';
+import Harry from '../screens/harry';
 import Home from '../screens/home';
 import Login from '../screens/login';
 
@@ -19,7 +20,7 @@ const Routes = () => {
         setIsLoggedIn(!!token);
       })
       .catch(err => {
-        console.log('🚀 ~ file: routes.js:6 ~ Routes ~ err', err);
+        // // console.log('🚀 ~ file: routes.js:6 ~ Routes ~ err', err);
       });
   }, []);
 
@@ -43,6 +44,7 @@ const Routes = () => {
               name="Details"
               component={Details}
             />
+            <Stack.Screen name="Harry" component={Harry} />
             <Stack.Screen name="Chat" component={Chat} />
             {/* Ajoutez cette ligne */}
           </Stack.Navigator>

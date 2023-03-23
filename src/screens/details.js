@@ -31,7 +31,7 @@ const Details = ({route}) => {
         setCharacter(response.data.data.results[0]);
       })
       .catch(err => {
-        console.log('🚀 ~ file: details.js:6 ~ Details ~ err', err);
+        // // console.log('🚀 ~ file: details.js:6 ~ Details ~ err', err);
       });
   };
 
