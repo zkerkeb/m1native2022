@@ -3,10 +3,12 @@ import { useFocusEffect } from '@react-navigation/native';
 import axios from 'axios';
 import React, { useEffect } from 'react';
 import { FlatList, Image, TouchableOpacity } from 'react-native';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import ReduxCounter from '../components/reduxCounter';
 
 const BASE_URL = 'https://gateway.marvel.com/v1/public';
-const API_KEY = '';
+const API_KEY = 'e1deb495f57e4ff291e185cfe0d853e3';
 const PRIVATE_KEY = 'remplissez';
 //  function generateHash(ts) {     const hash = md5(ts + PRIVATE_KEY + API_KEY);     return hash; }
 
@@ -29,6 +31,9 @@ const CharacterRow = ({uriImage, name, description, onPress}) => {
 const Home = props => {
   const [page, setPage] = React.useState(0);
   const [characters, setCharacters] = React.useState([]);
+  const stateRedux = useSelector(state => state);
+  console.log('🚀 ~ file: home.js:16 ~ CharacterRow ~ stateRedux:', stateRedux);
+
   useFocusEffect(() => {
     // AsyncStorage.removeItem('token');
     AsyncStorage.getItem('token')
@@ -84,8 +89,17 @@ const Home = props => {
   const handleNavigation = page => {
     props.navigation.navigate(page);
   };
+
+  const handleNavigateToChat = () => {
+    props.navigation.navigate('Chat');
+  };
+
   return (
     <Container>
+      <ReduxCounter />
+      <TouchableOpacity onPress={handleNavigateToChat}>
+        <StyledText>Chat with a Marvel Hero</StyledText>
+      </TouchableOpacity>
       <StyledText>Home</StyledText>
       <TouchableOpacity onPress={handleLogout}>
         <StyledText>Logout</StyledText>

@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
 import styled from 'styled-components';
+import Chat from '../screens/chat';
 import Details from '../screens/details';
 import Home from '../screens/home';
 import Login from '../screens/login';
@@ -42,6 +43,8 @@ const Routes = () => {
               name="Details"
               component={Details}
             />
+            <Stack.Screen name="Chat" component={Chat} />
+            {/* Ajoutez cette ligne */}
           </Stack.Navigator>
         ) : (
           <Stack.Navigator
