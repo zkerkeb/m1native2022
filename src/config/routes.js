@@ -8,6 +8,7 @@ import Details from '../screens/details';
 import Harry from '../screens/harry';
 import Home from '../screens/home';
 import Login from '../screens/login';
+import Todo from '../screens/todo';
 
 const Stack = createNativeStackNavigator();
 
@@ -45,6 +46,7 @@ const Routes = () => {
               component={Details}
             />
             <Stack.Screen name="Harry" component={Harry} />
+            <Stack.Screen name="Todo" component={Todo} />
             <Stack.Screen name="Chat" component={Chat} />
             {/* Ajoutez cette ligne */}
           </Stack.Navigator>

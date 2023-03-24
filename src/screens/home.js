@@ -125,6 +125,9 @@ const Home = props => {
       <TouchableOpacity onPress={() => props.navigation.navigate('Harry')}>
         <StyledText>Harry</StyledText>
       </TouchableOpacity>
+      <TouchableOpacity onPress={() => props.navigation.navigate('Todo')}>
+        <StyledText>Todo</StyledText>
+      </TouchableOpacity>
       <FlatList
         data={characters}
         onEndReached={() => {
